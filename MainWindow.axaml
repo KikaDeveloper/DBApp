@@ -37,6 +37,8 @@
                 </TextBox>
             </StackPanel>
 
+            <Button Classes="add" Content="Add" />
+
         </StackPanel>
 
 </Window>
