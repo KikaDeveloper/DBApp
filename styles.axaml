@@ -1,0 +1,15 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <Style Selector="TextBox.field" >
+    <Setter Property="Width" Value="Auto"/>
+    <Setter Property="Height" Value="50"/>
+    <Setter Property="" Value=""/>
+  </Style>
+
+  <Style Selector="StackPanel.box">
+    <Setter Property="Orientation" Value="Horizontal"/>
+    <Setter Property="Width" Value="Auto"/>
+  </Style>
+
+</Styles>
