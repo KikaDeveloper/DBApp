@@ -4,6 +4,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="DBApp.MainWindow"
-        Title="DBApp">
-    Welcome to Avalonia!
+        Title="DBApp"
+        Width="600" Height="700">
+
+        <Window.Styles>
+            <StyleInclude Source="./styles.axaml" />
+        </Window.Styles>
+
+        <StackPanel>
+
+            <StackPanel Name="NameField" Orientation="Horizontal">
+                <Label Content="Имя" />
+
+                <TextBox Classes="field">
+
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Name="UrlField" Orientation="Horizontal">
+                <Label Content="URL" />
+
+                <TextBox Classes="field">
+
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Name="DescriptionField" Orientation="Horizontal">
+                <Label Content="Описание" />
+
+                <TextBox Classes="field">
+
+                </TextBox>
+            </StackPanel>
+
+        </StackPanel>
+
 </Window>
