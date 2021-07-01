@@ -9,16 +9,14 @@ namespace DBApp
 {
     public partial class MainWindow : Window
     {
-
         TextBox Name {get; set;}
         TextBox Url{get; set;}
         TextBox Description {get; set;}
 
-
         public MainWindow()
         {
             InitializeComponent();
-            
+
             #if DEBUG
             this.AttachDevTools();
             #endif
@@ -39,9 +37,7 @@ namespace DBApp
 
         public void OnButtonClick(object sender, RoutedEventArgs e){
             Console.WriteLine("Click");
-            Console.WriteLine(Name.Text);
-            Console.WriteLine(Url.Text);
-            Console.WriteLine(Description.Text);
+            Console.WriteLine($"{Name.Text} : {Url.Text} : {Description.Text}");
         }
 
     }
