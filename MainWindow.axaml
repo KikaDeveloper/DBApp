@@ -5,39 +5,26 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="DBApp.MainWindow"
         Title="DBApp"
-        Width="600" Height="700">
+        Width="600" Height="480">
 
-        <Window.Styles>
-            <StyleInclude Source="./styles.axaml" />
-        </Window.Styles>
+        <StackPanel Classes="main">
 
-        <StackPanel>
-
-            <StackPanel Name="NameField" Orientation="Horizontal">
-                <Label Content="Имя" />
-
-                <TextBox Classes="field">
-
-                </TextBox>
+            <StackPanel Name="NameField" Classes="box">
+                <Label Content="Имя" Classes="label_font normal"/>
+                <TextBox Classes="field font design"/>
             </StackPanel>
 
-            <StackPanel Name="UrlField" Orientation="Horizontal">
-                <Label Content="URL" />
-
-                <TextBox Classes="field">
-
-                </TextBox>
+            <StackPanel Name="UrlField" Classes="box">
+                <Label Content="URL" Classes="label_font normal"/>
+                <TextBox Classes="field font design"/>
             </StackPanel>
 
-            <StackPanel Name="DescriptionField" Orientation="Horizontal">
-                <Label Content="Описание" />
-
-                <TextBox Classes="field">
-
-                </TextBox>
+            <StackPanel Name="DescriptionField" Classes="box">
+                <Label Content="Описание" Classes="label_font normal"/>
+                <TextBox Classes="field description font design"/>
             </StackPanel>
 
-            <Button Classes="add" Content="Add" />
+            <Button Classes="size content position" Content="Add" />
 
         </StackPanel>
 
