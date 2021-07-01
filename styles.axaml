@@ -12,4 +12,8 @@
     <Setter Property="Width" Value="Auto"/>
   </Style>
 
+  <Style Selector="Button.add">
+    
+  </Style>
+
 </Styles>
