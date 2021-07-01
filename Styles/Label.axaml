@@ -1,0 +1,21 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+        <Style Selector="Label.label_font">
+            <Setter Property="FontSize" Value="18" />
+          </Style>
+        
+          <Style Selector="Label.normal">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Margin" Value="10, 0, 0, 0"/>
+          </Style>
+        
+          <Style Selector="Label.right" >
+            <Setter Property="Foreground" Value="Green"/>
+          </Style>
+        
+          <Style Selector="Label.wrong" >
+            <Setter Property="Foreground" Value="Red"/>
+          </Style>
+
+</Styles>
