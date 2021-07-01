@@ -18,10 +18,15 @@ namespace DBApp
         public MainWindow()
         {
             InitializeComponent();
+            
             #if DEBUG
             this.AttachDevTools();
             #endif
 
+            InitializeControls();
+        }
+
+        private void InitializeControls(){
             Name = this.Find<TextBox>("NameField");
             Url = this.Find<TextBox>("UrlField");
             Description = this.Find<TextBox>("DescriptionField");
