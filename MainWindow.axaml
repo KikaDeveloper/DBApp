@@ -9,22 +9,22 @@
 
         <StackPanel Classes="main">
 
-            <StackPanel Name="NameField" Classes="box">
+            <StackPanel Classes="box">
                 <Label Content="Имя" Classes="label_font normal"/>
-                <TextBox Classes="field font design"/>
+                <TextBox Name="NameField" Classes="field font design"/>
             </StackPanel>
 
-            <StackPanel Name="UrlField" Classes="box">
+            <StackPanel Classes="box">
                 <Label Content="URL" Classes="label_font normal"/>
-                <TextBox Classes="field font design"/>
+                <TextBox Name="UrlField" Classes="field font design"/>
             </StackPanel>
 
-            <StackPanel Name="DescriptionField" Classes="box">
+            <StackPanel Classes="box">
                 <Label Content="Описание" Classes="label_font normal"/>
-                <TextBox Classes="field description font design"/>
+                <TextBox Name="DescriptionField" Classes="field description font design"/>
             </StackPanel>
 
-            <Button Classes="size content position" Content="Add" />
+            <Button Classes="size content position" Content="Add" Click="OnButtonClick" />
 
         </StackPanel>
 
