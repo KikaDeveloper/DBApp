@@ -7,7 +7,7 @@
         Title="DBApp"
         Width="600" Height="480">
 
-        <StackPanel Classes="main">
+        <StackPanel Name="Main" Classes="main">
 
             <StackPanel Classes="box">
                 <Label Content="Имя" Name="LabelName" Classes="label_font normal"/>
@@ -25,6 +25,8 @@
             </StackPanel>
 
             <Button Classes="size content position" Content="Add" Click="OnButtonClick" />
+
+            <StackPanel Name="console" Orientation="Vertical"/>
 
         </StackPanel>
 
