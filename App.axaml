@@ -7,5 +7,6 @@
         <StyleInclude Source="/Styles/Label.axaml"/>
         <StyleInclude Source="/Styles/Button.axaml"/>
         <StyleInclude Source="/Styles/StackPanel.axaml"/>
+        <StyleInclude Source="/Styles/TabControl.axaml"/>
     </Application.Styles>
 </Application>
