@@ -10,12 +10,12 @@
         <StackPanel Classes="main">
 
             <StackPanel Classes="box">
-                <Label Content="Имя" Classes="label_font normal"/>
-                <TextBox Name="NameField" Classes="field font design"/>
+                <Label Content="Имя" Name="LabelName" Classes="label_font normal"/>
+                <TextBox TextInput="GotFocusNameField" Name="NameField" Classes="field font design"/>
             </StackPanel>
 
             <StackPanel Classes="box">
-                <Label Content="URL" Classes="label_font normal"/>
+                <Label Content="URL" Name="LabelUrl" Classes="label_font normal"/>
                 <TextBox Name="UrlField" Classes="field font design"/>
             </StackPanel>
 
