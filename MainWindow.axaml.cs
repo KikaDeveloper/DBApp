@@ -1,11 +1,7 @@
 using Avalonia;
-using Avalonia.Input;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Interactivity;
-
-using System;
-using System.Threading.Tasks;
 
 using Helper;
 
@@ -31,9 +27,6 @@ namespace DBApp
             NameField = this.Find<TextBox>("NameField");
             UrlField = this.Find<TextBox>("UrlField");
             DescriptionField = this.Find<TextBox>("DescriptionField");
-
-            // NameField.TextInput += GotFocusNameField;
-            // UrlField.TextInput += GotFocusUrlField;
         }
 
         private void InitializeComponent()
@@ -42,31 +35,39 @@ namespace DBApp
         }
 
         public void OnButtonClick(object sender, RoutedEventArgs e){
-            Console.WriteLine("Click");
-            Console.WriteLine($"{NameField.Text} : {UrlField.Text} : {DescriptionField.Text}");
+            AddDocument();          
+        }
 
+        private async void AddDocument(){
             if(CheckFields()){
                 var item = new Item(NameField.Text, UrlField.Text, DescriptionField.Text);
-                MongoDriver?.AddDocument(item);
-            } else MessageWrong();
+                await MongoDriver.AddDocument(item);
+
+                ShowMessage("Запись добавлена.", "right");
+                ClearTextBoxes();
+
+            }else ShowMessage("Поля Имя и URL обязательны.", "wrong");
         }
 
-        private void MessageOk(){
-            this.Find<Label>("LabelName").Classes.Remove("wrong");
-            this.Find<Label>("LabelName").Classes.Add("right");
-            this.Find<Label>("LabelUrl").Classes.Remove("wrong");
-            this.Find<Label>("LabelUrl").Classes.Add("right");
+        private void ShowMessage(string mess, string style){
+            Label mes = new Label(){
+                Content = mess,
+            };
+            mes.Classes.Add(style);
+            mes.Classes.Add("mess"); 
+
+            this.Find<StackPanel>("console").Children.Clear();
+            this.Find<StackPanel>("console").Children.Add(mes);
         }
 
-        private void MessageWrong(){
-            //this.Find<Label>("LabelName").Classes.Remove("right");
-            this.Find<Label>("LabelName").Classes.Add("wrong");
-            //this.Find<Label>("LabelUrl").Classes.Remove("right");
-            this.Find<Label>("LabelUrl").Classes.Add("wrong");
+        private void ClearTextBoxes(){
+            NameField.Text = "";
+            UrlField.Text = "";
+            DescriptionField.Text = "";
         }
 
         private bool CheckFields(){
-            return ((NameField.Text != "" || NameField.Text != "") && (UrlField.Text != " " || UrlField.Text != ""));
+            return (NameField.Text != null && NameField.Text != "" && UrlField.Text != null && UrlField.Text != "");
         }
 
     }
