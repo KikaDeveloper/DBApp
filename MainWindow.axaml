@@ -2,32 +2,50 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="DBApp.MainWindow"
-        Title="DBApp"
-        Width="600" Height="480">
+        Title="App"
+        Width="600" Height="490"
+        MaxWidth="600" MaxHeight="490"
+        CanResize="false" Focusable="true">
 
-        <StackPanel Name="Main" Classes="main">
+        <TabControl>
+            <TabItem Classes="add" >
+                <TabItem.Header>
+                    <Label Content="Добавить" />
+                </TabItem.Header>
+                
+                <StackPanel Name="Main" Classes="main">
 
-            <StackPanel Classes="box">
-                <Label Content="Имя" Name="LabelName" Classes="label_font normal"/>
-                <TextBox Name="NameField" Classes="field font design"/>
-            </StackPanel>
+                    <StackPanel Classes="box">
+                        <Label Content="Имя" Name="LabelName" Classes="label_font normal"/>
+                        <TextBox Name="NameField" Classes="field font design"/>
+                    </StackPanel>
+        
+                    <StackPanel Classes="box">
+                        <Label Content="URL" Name="LabelUrl" Classes="label_font normal"/>
+                        <TextBox Name="UrlField" Classes="field font design"/>
+                    </StackPanel>
+        
+                    <StackPanel Classes="box">
+                        <Label Content="Описание" Classes="label_font normal"/>
+                        <TextBox Name="DescriptionField" Classes="field description font design"/>
+                    </StackPanel>
+        
+                    <Button Classes="size content position font" Content="добавить" Click="OnButtonClick" />
+        
+                    <StackPanel Name="console" Orientation="Vertical"/>
+        
+                </StackPanel>
 
-            <StackPanel Classes="box">
-                <Label Content="URL" Name="LabelUrl" Classes="label_font normal"/>
-                <TextBox Name="UrlField" Classes="field font design"/>
-            </StackPanel>
+            </TabItem>
 
-            <StackPanel Classes="box">
-                <Label Content="Описание" Classes="label_font normal"/>
-                <TextBox Name="DescriptionField" Classes="field description font design"/>
-            </StackPanel>
+            <TabItem Classes="list" >
+                <TabItem.Header>
+                    <Label Content="Список" />
+                </TabItem.Header>
 
-            <Button Classes="size content position" Content="Add" Click="OnButtonClick" />
+                
 
-            <StackPanel Name="console" Orientation="Vertical"/>
-
-        </StackPanel>
-
+            </TabItem>
+        </TabControl>
 </Window>
