@@ -11,7 +11,7 @@
 
             <StackPanel Classes="box">
                 <Label Content="Имя" Name="LabelName" Classes="label_font normal"/>
-                <TextBox TextInput="GotFocusNameField" Name="NameField" Classes="field font design"/>
+                <TextBox Name="NameField" Classes="field font design"/>
             </StackPanel>
 
             <StackPanel Classes="box">

@@ -48,22 +48,21 @@ namespace DBApp
             if(CheckFields()){
                 var item = new Item(NameField.Text, UrlField.Text, DescriptionField.Text);
                 MongoDriver?.AddDocument(item);
-            }            
+            } else MessageWrong();
         }
 
-        public void GotFocusNameField(object sender, TextInputEventArgs e){
-            Console.WriteLine("Typing text");
-            if(NameField.Text != null || NameField.Text != ""){
-                this.Find<Label>("LabelName").Classes.Remove("normal");
-                this.Find<Label>("LabelName").Classes.Add("right");
-            } else {
-                this.Find<Label>("LabelName").Classes.Remove("right");
-                this.Find<Label>("LabelName").Classes.Add("wrong");
-            }
+        private void MessageOk(){
+            this.Find<Label>("LabelName").Classes.Remove("wrong");
+            this.Find<Label>("LabelName").Classes.Add("right");
+            this.Find<Label>("LabelUrl").Classes.Remove("wrong");
+            this.Find<Label>("LabelUrl").Classes.Add("right");
         }
 
-        public void GotFocusUrlField(object sender, TextInputEventArgs e){
-
+        private void MessageWrong(){
+            //this.Find<Label>("LabelName").Classes.Remove("right");
+            this.Find<Label>("LabelName").Classes.Add("wrong");
+            //this.Find<Label>("LabelUrl").Classes.Remove("right");
+            this.Find<Label>("LabelUrl").Classes.Add("wrong");
         }
 
         private bool CheckFields(){
