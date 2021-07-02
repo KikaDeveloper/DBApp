@@ -16,12 +16,13 @@
         
           <Style Selector="Label.wrong" >
             <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="Margin" Value="0, 15, 0, 0" />
           </Style>
 
           <Style Selector="Label.mess">
             <Setter Property="FontSize" Value="18" />
             <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="Margin" Value="0, 10, 0, 0"/>
+            <Setter Property="Margin" Value="0, 15, 0, 0"/>
           </Style>
 
 </Styles>

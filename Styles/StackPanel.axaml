@@ -2,13 +2,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
         <Style Selector="StackPanel.box">
-            <Setter Property="MinWidth" Value="200"/>
+            <Setter Property="Width" Value="560" />
             <Setter Property="Orientation" Value="Vertical" />
             <Setter Property="Margin" Value="0, 10, 0, 0" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
         
         <Style Selector="StackPanel.main">
-            <Setter Property="Margin" Value="15"/>
+            <Setter Property="Margin" Value="15, 0, 15, 0"/>
             <Setter Property="Orientation" Value="Vertical" />
         </Style>        
 
