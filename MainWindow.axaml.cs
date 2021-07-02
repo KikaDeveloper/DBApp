@@ -9,9 +9,10 @@ namespace DBApp
 {
     public partial class MainWindow : Window
     {
-        TextBox Name {get; set;}
-        TextBox Url{get; set;}
-        TextBox Description {get; set;}
+
+        TextBox? NameField {get; set;}
+        TextBox? UrlField{get; set;}
+        TextBox? DescriptionField {get; set;}
 
         public MainWindow()
         {
@@ -25,9 +26,9 @@ namespace DBApp
         }
 
         private void InitializeControls(){
-            Name = this.Find<TextBox>("NameField");
-            Url = this.Find<TextBox>("UrlField");
-            Description = this.Find<TextBox>("DescriptionField");
+            NameField = this.Find<TextBox>("NameField");
+            UrlField = this.Find<TextBox>("UrlField");
+            DescriptionField = this.Find<TextBox>("DescriptionField");
         }
 
         private void InitializeComponent()
@@ -37,7 +38,7 @@ namespace DBApp
 
         public void OnButtonClick(object sender, RoutedEventArgs e){
             Console.WriteLine("Click");
-            Console.WriteLine($"{Name.Text} : {Url.Text} : {Description.Text}");
+            Console.WriteLine($"{NameField?.Text} : {UrlField?.Text} : {DescriptionField?.Text}");
         }
 
     }
