@@ -20,7 +20,7 @@ namespace Helper{
             var collection = lib.GetCollection<BsonDocument>(CollectionName); 
             var filter = new BsonDocument();
             var data = await collection.Find<BsonDocument>(filter).ToListAsync();
-            return GetList(data);
+            return GetList<Item>(data);
         }
 
         public async Task AddDocument(Item doc){
@@ -29,16 +29,16 @@ namespace Helper{
             var filter = new BsonDocument();
             var temp = new BsonDocument(){
                 {"Name", doc.Name},
-                {"Site", doc.Site},
+                {"Url", doc.Site},
                 {"Description", doc.Description}
             };
             await collection.InsertOneAsync(temp);
         }
 
-        private List<Item> GetList(List<BsonDocument> data){
-            var list = new List<Item>();
+        private List<T> GetList<T>(List<BsonDocument> data){
+            var list = new List<T>();
             foreach(var item in data){
-                list.Add(BsonSerializer.Deserialize<Item>(item));
+                list.Add(BsonSerializer.Deserialize<T>(item));
             }
             return list;
         }
