@@ -10,14 +10,14 @@ namespace Helper{
         private MongoClient Client { get; set; }
         private string CollectionName { get; set; }
 
-        public Driver(string connection_string, string collection){
+        public Driver(string connection_string, string collection_name){
             Client = new MongoClient(connection_string);
-            CollectionName = collection;
+            CollectionName = collection_name;
         }
 
         public async Task<List<Item>> GetAllDocuments(){
             var lib = Client.GetDatabase("library");
-            var collection = lib.GetCollection<BsonDocument>("data"); 
+            var collection = lib.GetCollection<BsonDocument>(CollectionName); 
             var filter = new BsonDocument();
             var data = await collection.Find<BsonDocument>(filter).ToListAsync();
             return GetList(data);
@@ -25,7 +25,7 @@ namespace Helper{
 
         public async Task AddDocument(Item doc){
             var lib = Client.GetDatabase("library");
-            var collection = lib.GetCollection<BsonDocument>("data");
+            var collection = lib.GetCollection<BsonDocument>(CollectionName);
             var filter = new BsonDocument();
             var temp = new BsonDocument(){
                 {"Name", doc.Name},
