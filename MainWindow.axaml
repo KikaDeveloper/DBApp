@@ -44,7 +44,30 @@
                     <Label Content="Список" />
                 </TabItem.Header>
 
-               
+               <!-- <ListBox>
+                   <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <StackPanel DockPanel.Dock="Right">
+                                    <TextBlock/>
+                                    <TextBlock/>
+                                    <TextBlock/>
+                                </StackPanel>
+                                <StackPanel DockPanel.Dock="Left" >
+                                    <Button/>
+                                </StackPanel>
+                            </DockPanel>
+                        </DataTemplate>
+                   </ListBox.ItemTemplate>
+               </ListBox> -->
+
+               <DataGrid Name="List" AutoGenerateColumns="False" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}"/>
+                        <DataGridTextColumn Header="Url" Binding="{Binding Path=Site}"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}"/>
+                    </DataGrid.Columns>
+               </DataGrid>
 
             </TabItem>
         </TabControl>
