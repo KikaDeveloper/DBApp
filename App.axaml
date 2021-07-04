@@ -9,6 +9,5 @@
         <StyleInclude Source="/Styles/Button.axaml"/>
         <StyleInclude Source="/Styles/StackPanel.axaml"/>
         <StyleInclude Source="/Styles/TabControl.axaml"/>
-        <StyleInclude Source="/Styles/TextBlock.axaml"/>
     </Application.Styles>
 </Application>
