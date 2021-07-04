@@ -3,6 +3,7 @@
              x:Class="DBApp.App">
     <Application.Styles>
         <FluentTheme Mode="Light"/>
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Default.xaml"/>
         <StyleInclude Source="/Styles/TextBox.axaml"/>
         <StyleInclude Source="/Styles/Label.axaml"/>
         <StyleInclude Source="/Styles/Button.axaml"/>
