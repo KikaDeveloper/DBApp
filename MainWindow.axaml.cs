@@ -1,9 +1,11 @@
 using Avalonia;
+using Avalonia.Input;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Interactivity;
 
 using Helper;
+using System;
 using System.Collections.Generic;
 
 namespace DBApp
@@ -16,8 +18,6 @@ namespace DBApp
         DataGrid Grid {get; set;}
 
         Driver MongoDriver {get; set;} 
-
-        List<Item> List {get; set;}
 
         public MainWindow()
         {
@@ -33,10 +33,6 @@ namespace DBApp
             UrlField = this.Find<TextBox>("UrlField");
             DescriptionField = this.Find<TextBox>("DescriptionField");
             Grid = this.Find<DataGrid>("List");
-
-            List = new List<Item>();
-            GetAllDocuments();
-            Grid.Items = List;
         }
 
         private void InitializeComponent()
@@ -45,7 +41,7 @@ namespace DBApp
         }
 
         private async void GetAllDocuments(){
-            List = await MongoDriver.GetAllDocuments();
+            Grid.Items = await MongoDriver.GetAllDocuments();
         }
 
         public void OnButtonClick(object sender, RoutedEventArgs e){
@@ -84,5 +80,8 @@ namespace DBApp
             return (NameField.Text != null && NameField.Text != "" && UrlField.Text != null && UrlField.Text != "");
         }
 
+        public void TabListGotFocus(object sender, GotFocusEventArgs e){
+            GetAllDocuments();
+        }
     }
 }
