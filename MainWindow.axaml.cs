@@ -4,6 +4,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Interactivity;
 
 using Helper;
+using System.Collections.Generic;
 
 namespace DBApp
 {
@@ -12,8 +13,11 @@ namespace DBApp
         TextBox NameField {get; set;}
         TextBox UrlField{get; set;}
         TextBox DescriptionField {get; set;}
+        DataGrid Grid {get; set;}
 
         Driver MongoDriver {get; set;} 
+
+        List<Item> List {get; set;}
 
         public MainWindow()
         {
@@ -24,14 +28,24 @@ namespace DBApp
             #endif
 
             MongoDriver = new Driver("mongodb://localhost:27017", "data");
+            
             NameField = this.Find<TextBox>("NameField");
             UrlField = this.Find<TextBox>("UrlField");
             DescriptionField = this.Find<TextBox>("DescriptionField");
+            Grid = this.Find<DataGrid>("List");
+
+            List = new List<Item>();
+            GetAllDocuments();
+            Grid.Items = List;
         }
 
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+        }
+
+        private async void GetAllDocuments(){
+            List = await MongoDriver.GetAllDocuments();
         }
 
         public void OnButtonClick(object sender, RoutedEventArgs e){
