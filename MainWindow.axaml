@@ -45,41 +45,34 @@
                     <Label Content="Список" />
                 </TabItem.Header>
 
-               <StackPanel Orientation="Vertical" >     
+                    <ScrollViewer Margin="0, 10, 0, 10" VerticalScrollBarVisibility="Hidden">
+                        <ItemsControl Name="List">
 
-                    <Grid Margin="10, 10, 0, 10" ColumnDefinitions="100, 100, 100" >
-                        <TextBlock Grid.Column="0">Name</TextBlock>
-                        <TextBlock Grid.Column="1">Url</TextBlock>
-                        <TextBlock Grid.Column="2">Description</TextBlock>
-                    </Grid>
-
-                    <ItemsControl Name="List">
-
-                        <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Vertical" />
-                                </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                    <Border Classes="item">
-                                        <DockPanel>
-                                            <StackPanel DockPanel.Dock="Left" Classes="item">
-                                                <TextBlock Margin="5, 0, 0, 0" Classes="item" Text="{ Binding Name }" />
-                                                <TextBlock Classes="item" Text="{ Binding Url }" />
-                                                <TextBlock Classes="item" Text="{ Binding Description }" />
-                                            </StackPanel>
+                            <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Vertical" />
+                                    </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
     
-                                            <Button DockPanel.Dock="Right" >
-                                                <Image Source="/images/rm_btn.jpg" />
-                                            </Button>
-                                        </DockPanel>
-                                    </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                        <Border Classes="item">
+                                            <DockPanel>
+                                                <StackPanel DockPanel.Dock="Left" Classes="item">
+                                                    <TextBlock Margin="5, 0, 0, 0" Classes="item" Text="{ Binding Name }" />
+                                                    <TextBlock Classes="item" Text="{ Binding Url }" />
+                                                    <TextBlock Classes="item" Text="{ Binding Description }" />
+                                                </StackPanel>
+        
+                                                <Button DockPanel.Dock="Right" >
+                                                    <!-- <Image Source="/images/rm_btn.jpg" /> -->
+                                                </Button>
+                                            </DockPanel>
+                                        </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
             </TabItem>
         </TabControl>
 </Window>
