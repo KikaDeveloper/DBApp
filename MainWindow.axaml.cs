@@ -15,7 +15,7 @@ namespace DBApp
         TextBox NameField {get; set;}
         TextBox UrlField{get; set;}
         TextBox DescriptionField {get; set;}
-        DataGrid Grid {get; set;}
+        ItemsControl List {get; set;}
 
         Driver MongoDriver {get; set;} 
 
@@ -32,7 +32,7 @@ namespace DBApp
             NameField = this.Find<TextBox>("NameField");
             UrlField = this.Find<TextBox>("UrlField");
             DescriptionField = this.Find<TextBox>("DescriptionField");
-            Grid = this.Find<DataGrid>("List");
+            List = this.Find<ItemsControl>("List");
         }
 
         private void InitializeComponent()
@@ -41,7 +41,7 @@ namespace DBApp
         }
 
         private async void GetAllDocuments(){
-            Grid.Items = await MongoDriver.GetAllDocuments();
+            List.Items = await MongoDriver.GetAllDocuments();
         }
 
         public void OnButtonClick(object sender, RoutedEventArgs e){
