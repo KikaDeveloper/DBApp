@@ -5,26 +5,25 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Interactivity;
 
 using Helper;
-using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DBApp
 {
     public partial class MainWindow : Window
     {
-        TextBox NameField {get; set;}
-        TextBox UrlField{get; set;}
-        TextBox DescriptionField {get; set;}
-        ItemsControl List {get; set;}
+        private TextBox NameField { get; set; }
+        private TextBox UrlField { get; set; }
+        private TextBox DescriptionField { get; set; }
+        private ItemsControl List { get; set; }
 
-        Driver MongoDriver {get; set;} 
+        private Driver MongoDriver { get; set; } 
 
         public MainWindow()
         {
             InitializeComponent();
 
             #if DEBUG
-            this.AttachDevTools();
+                this.AttachDevTools();
             #endif
 
             MongoDriver = new Driver("mongodb://localhost:27017", "data");
@@ -45,23 +44,30 @@ namespace DBApp
         }
 
         public void OnButtonClick(object sender, RoutedEventArgs e){
-            AddDocument();          
+            Task.Run(async () => await AddDocument());          
         }
 
-        private async void AddDocument(){
-            if(CheckFields()){
+        public void TabListGotFocus(object sender, GotFocusEventArgs e){
+            GetAllDocuments();
+        }
+
+        private async Task AddDocument(){
+            var isChecked = CheckFields();
+
+            if(isChecked)
+            {
                 var item = new Item(NameField.Text, UrlField.Text, DescriptionField.Text);
                 await MongoDriver.AddDocument(item);
 
                 ShowMessage("Запись добавлена.", "right");
                 ClearTextBoxes();
-
-            }else ShowMessage("Поля Имя и URL обязательны.", "wrong");
+            }
+            else ShowMessage("Поля Имя и URL обязательны.", "wrong");
         }
 
-        private void ShowMessage(string mess, string style){
+        private void ShowMessage(string message, string style){
             Label mes = new Label(){
-                Content = mess,
+                Content = message,
             };
             mes.Classes.Add(style);
             mes.Classes.Add("mess"); 
@@ -80,8 +86,5 @@ namespace DBApp
             return (NameField.Text != null && NameField.Text != "" && UrlField.Text != null && UrlField.Text != "");
         }
 
-        public void TabListGotFocus(object sender, GotFocusEventArgs e){
-            GetAllDocuments();
-        }
     }
 }

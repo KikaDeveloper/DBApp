@@ -7,40 +7,50 @@ using System.Collections.Generic;
 namespace Helper{
     public class Driver{
 
-        private MongoClient Client { get; set; }
-        private string CollectionName { get; set; }
+        private MongoClient _client { get; set; }
+        private string _collectionName { get; set; }
 
-        public Driver(string connection_string, string collection_name){
-            Client = new MongoClient(connection_string);
-            CollectionName = collection_name;
+        public Driver(string connectionString, string collectionName)
+        {
+            _client = new MongoClient(connectionString);
+            _collectionName = collectionName;
         }
 
-        public async Task<List<Item>> GetAllDocuments(){
-            var lib = Client.GetDatabase("library");
-            var collection = lib.GetCollection<BsonDocument>(CollectionName); 
+        public async Task<List<Item>> GetAllDocuments()
+        {
+            IMongoCollection<BsonDocument> collection = GetCollection();
             var filter = new BsonDocument();
-            var data = await collection.Find<BsonDocument>(filter).ToListAsync();
-            return DeserializeList<Item>(data);
+            var list = await collection.Find<BsonDocument>(filter).ToListAsync();
+            return DeserializeList<Item>(list);
         }
 
-        public async Task AddDocument(Item doc){
-            var lib = Client.GetDatabase("library");
-            var collection = lib.GetCollection<BsonDocument>(CollectionName);
-            var filter = new BsonDocument();
-            var temp = new BsonDocument(){
-                {"Name", doc.Name},
-                {"Url", doc.Url},
-                {"Description", doc.Description}
+        public async Task AddDocument(Item document)
+        {
+            IMongoCollection<BsonDocument> collection = GetCollection();
+            var newDocument = new BsonDocument(){
+                {"Name", document.Name},
+                {"Url", document.Url},
+                {"Description", document.Description}
             };
-            await collection.InsertOneAsync(temp);
+            await collection.InsertOneAsync(newDocument);
         }
 
-        private List<T> DeserializeList<T>(List<BsonDocument> data){
-            var list = new List<T>();
-            foreach(var item in data){
-                list.Add(BsonSerializer.Deserialize<T>(item));
+        private IMongoCollection<BsonDocument> GetCollection()
+        {
+            IMongoDatabase library = _client.GetDatabase("library");
+            IMongoCollection<BsonDocument> collection = library.GetCollection<BsonDocument>(_collectionName);
+            return collection; 
+        }
+
+        private List<T> DeserializeList<T>(List<BsonDocument> list)
+        {
+            var resultList = new List<T>();
+
+            foreach(var item in list){
+                resultList.Add(BsonSerializer.Deserialize<T>(item));
             }
-            return list;
+
+            return resultList;
         }
     }
 
